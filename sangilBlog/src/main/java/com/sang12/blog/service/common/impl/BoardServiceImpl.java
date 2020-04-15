@@ -140,12 +140,10 @@ public class BoardServiceImpl implements BoardService {
 			props.put("defaultEncoding", "utf-8");
 			props.put("mail.smtp.auth", "true");
 			
-			System.out.println("매일 보내기 " + mailId + mailPw);
-			
 			try {
 				String sender = mailId + "@naver.com"; 
 				String subject = "[블로그 댓글] 게시글 번호: " + boardReply.getBoard_id(); 
-				String body = "http://sang12.co.kr/" + boardReply.getBoard_id() + "\n" +boardReply.getReply_content();
+				String body = "https://sang12.co.kr/" + boardReply.getBoard_id() + "\n" +boardReply.getReply_content();
 				
 				Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
 					protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
@@ -194,7 +192,7 @@ public class BoardServiceImpl implements BoardService {
        for(BoardReplyEntity boardReplyParent: boardReplyListParent){
            //2-1. 부모는 무조건 넣는다.
            newBoardReplyList.add(boardReplyParent);
-           //3.자식을 돌린다.
+           //3.자식을 돌린다.naver
            for(BoardReplyEntity boardReplyChild: boardReplyListChild){
                //3-1. 부모의 자식인 것들만 넣는다.
                if(boardReplyParent.getReply_id().equals(boardReplyChild.getParent_id())){
