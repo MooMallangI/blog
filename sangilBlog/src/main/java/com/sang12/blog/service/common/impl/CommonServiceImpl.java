@@ -137,7 +137,7 @@ public class CommonServiceImpl implements CommonService {
 		channel.setFeedType("rss_2.0");
 		channel.setTitle("Sang12 Blog");
 		channel.setDescription("Sangil's Blog");
-		channel.setLink("http://sang12.co.kr");
+		channel.setLink("https://sang12.co.kr");
 		channel.setGenerator("Sang12 Blog");
 		
 		Date postDate = new Date();
@@ -152,7 +152,7 @@ public class CommonServiceImpl implements CommonService {
 			item.setAuthor("sang12");
 			//네이버웹마스터 도구에서 rss등록이안되서 수정처리
 			//item.setLink("http://sang12.co.kr/" + board.getBoardId() + "/" + board.getTitle().replaceAll(" ","-").replaceAll("/", ""));
-			item.setLink("http://sang12.co.kr/" + board.getBoardId());
+			item.setLink("https://sang12.co.kr/" + board.getBoardId());
 			item.setTitle(board.getTitle());
 			
 			/*
