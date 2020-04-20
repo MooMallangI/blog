@@ -150,6 +150,7 @@ public class CommonServiceImpl implements CommonService {
 			//category.set
 			
 			item.setAuthor("sang12");
+			
 			//네이버웹마스터 도구에서 rss등록이안되서 수정처리
 			//item.setLink("http://sang12.co.kr/" + board.getBoardId() + "/" + board.getTitle().replaceAll(" ","-").replaceAll("/", ""));
 			item.setLink("https://sang12.co.kr/" + board.getBoardId());
