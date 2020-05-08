@@ -49,7 +49,7 @@ html, body{
  		    <meta property="og:type" content="blog">
 			<meta property="og:title" content="${mainData.mainTitle}">
 			<meta property="og:description" content="취미 및 관심사를 공유하는 최상일의 개인 블로그입니다.">
-			<meta property="og:url" content="http://sang12.co.kr">
+			<meta property="og:url" content="https://sang12.co.kr">
 	    </c:if>
 	    <script src="/webjars/jquery/3.2.1/jquery.js"></script>
 	    <script src="/webjars/bootstrap/4.1.2/dist/js/bootstrap.min.js"></script>
