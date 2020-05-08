@@ -39,7 +39,7 @@ html, body{
 	    	<meta property="og:type" content="article">
 			<meta property="og:title" content="${mainData.mainTitle}">
 			<meta property="og:description" content="<c:out value='${fn:substring(mainData.articleList[0].content.replaceAll("\\\<.*?\\\>",""),0,100)}' escapeXml="false"/>">
-			<meta property="og:url" content="https://sang12.co.kr/${mainData.articleList[0].boardId }">
+			<meta property="og:url" content="https://sang12.co.kr/${mainData.articleList[0].boardId}/${mainData.mainEncodeTitle}">
 	    </c:if>
 	    <c:if test="${ mainData.mainTitle eq null}">
 	    	<title><tiles:getAsString name="title"/></title>
