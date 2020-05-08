@@ -51,7 +51,15 @@ public class FrontBoardController {
 	 */
 	@RequestMapping("/{articleId}/{title}")
 	public ModelAndView getArticleTitle(@PathVariable int articleId, @PathVariable String title){
-		Map<String, Object> data = boardService.getArticle(articleId);
+		Map<String, Object> data = null;
+		try {
+			data = boardService.getArticle(articleId);
+			String articleTitle = data.get("mainTitle") + "";
+			data.put("mainTitle", URLEncoder.encode(articleTitle.replaceAll(" ", "-").replaceAll("/", ""), "UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return new ModelAndView("front/main", "mainData", data);
 	}
 	
