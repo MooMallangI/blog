@@ -35,7 +35,7 @@ html, body{
 	    	<title>${mainData.mainTitle}</title>
 	    	<meta name="description" content='<c:out value='${fn:substring(mainData.articleList[0].content.replaceAll("\\\<.*?\\\>",""),0,100)}' escapeXml="false"/>'>
 	    	<meta name="keywords" content="${mainData.articleList[0].keyword }">
-	    	<link rel="canonical" href="https://sang12.co.kr/${mainData.articleList[0].boardId}/${mainData.mainTitle}">	
+	    	<link rel="canonical" href="https://sang12.co.kr/${mainData.articleList[0].boardId}/${mainData.mainEncodeTitle}">	
 	    	<meta property="og:type" content="article">
 			<meta property="og:title" content="${mainData.mainTitle}">
 			<meta property="og:description" content="<c:out value='${fn:substring(mainData.articleList[0].content.replaceAll("\\\<.*?\\\>",""),0,100)}' escapeXml="false"/>">
