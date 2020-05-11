@@ -29,7 +29,7 @@ public class PagingVo implements Serializable {
 	//db에서 페이징 할 시작번호
 	private int start;
 	
-	//하단에 ㅇ표시 할 페이징 범위
+	//하단에 표시 할 페이징 범위
 	private int countPage;
 	
 	//출력될 게시 물 수 

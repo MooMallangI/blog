@@ -31,26 +31,44 @@ html, body{
 		  });
 		</script>
     	
-	    <c:if test="${ mainData.mainTitle ne null}">
-	    	<title>${mainData.mainTitle}</title>
-	    	<meta name="description" content='<c:out value='${fn:substring(mainData.articleList[0].content.replaceAll("\\\<.*?\\\>",""),0,100)}' escapeXml="false"/>'>
-	    	<meta name="keywords" content="${mainData.articleList[0].keyword }">
-	    	<link rel="canonical" href="https://sang12.co.kr/${mainData.articleList[0].boardId}/${mainData.mainEncodeTitle}">	
-	    	<meta property="og:type" content="article">
-			<meta property="og:title" content="${mainData.mainTitle}">
-			<meta property="og:description" content="<c:out value='${fn:substring(mainData.articleList[0].content.replaceAll("\\\<.*?\\\>",""),0,100)}' escapeXml="false"/>">
-			<meta property="og:url" content="https://sang12.co.kr/${mainData.articleList[0].boardId}/${mainData.mainEncodeTitle}">
-	    </c:if>
-	    <c:if test="${ mainData.mainTitle eq null}">
-	    	<title><tiles:getAsString name="title"/></title>
-	    	<meta name="description" content='취미 및 관심사를 공유하는 최상일의 개인 블로그입니다.'>
-	    	<meta name="keywords" content="blog, sang12, 개인블로그">
-	    	<link rel="canonical" href="https://sang12.co.kr">	
- 		    <meta property="og:type" content="blog">
-			<meta property="og:title" content="${mainData.mainTitle}">
-			<meta property="og:description" content="취미 및 관심사를 공유하는 최상일의 개인 블로그입니다.">
-			<meta property="og:url" content="https://sang12.co.kr">
-	    </c:if>
+    	<c:choose>
+    		<%--main title이 있을경우 --%>
+    		<c:when test="${ mainData.mainTitle ne null }">
+				<title>${mainData.mainTitle}</title>
+		    	<meta name="description" content='<c:out value='${fn:substring(mainData.articleList[0].content.replaceAll("\\\<.*?\\\>",""),0,100)}' escapeXml="false"/>'>
+		    	<meta name="keywords" content="${mainData.articleList[0].keyword }">
+		    	<link rel="canonical" href="https://sang12.co.kr/${mainData.articleList[0].boardId}/${mainData.mainEncodeTitle}">	
+		    	<meta property="og:type" content="article">
+				<meta property="og:title" content="${mainData.mainTitle}">
+				<meta property="og:description" content="<c:out value='${fn:substring(mainData.articleList[0].content.replaceAll("\\\<.*?\\\>",""),0,100)}' escapeXml="false"/>">
+				<meta property="og:url" content="https://sang12.co.kr/${mainData.articleList[0].boardId}/${mainData.mainEncodeTitle}">    		
+    		</c:when>
+    		
+    		<%--tag 검색시 --%>
+    		<c:when test="${ mainData.tagName ne null }">
+    			<title>tag:${mainData.tagName}</title>
+		    	<meta name="description" content='<c:out value='${fn:substring(mainData.articleList[0].content.replaceAll("\\\<.*?\\\>",""),0,100)}' escapeXml="false"/>'>
+		    	<meta name="keywords" content="${mainData.tagName}">
+		    	<link rel="canonical" href="https://sang12.co.kr/tag/${mainData.tagName}">	
+		    	<meta property="og:type" content="article">
+				<meta property="og:title" content="tag:${mainData.tagName}">
+				<meta property="og:description" content="<c:out value='${fn:substring(mainData.articleList[0].content.replaceAll("\\\<.*?\\\>",""),0,100)}' escapeXml="false"/>">
+				<meta property="og:url" content="https://sang12.co.kr/tag/${mainData.tagName}">
+			</c:when>
+			
+    		<%--다른 설정이 없을 경우--%>
+    		<c:otherwise>
+		    	<title><tiles:getAsString name="title"/></title>
+		    	<meta name="description" content='취미 및 관심사를 공유하는 최상일의 개인 블로그입니다.'>
+		    	<meta name="keywords" content="blog, sang12, 개인블로그">
+		    	<link rel="canonical" href="https://sang12.co.kr">	
+	 		    <meta property="og:type" content="blog">
+				<meta property="og:title" content="${mainData.mainTitle}">
+				<meta property="og:description" content="취미 및 관심사를 공유하는 최상일의 개인 블로그입니다.">
+				<meta property="og:url" content="https://sang12.co.kr">
+    		</c:otherwise>
+    	</c:choose>
+    	
 	    <script src="/webjars/jquery/3.2.1/jquery.js"></script>
 	    <script src="/webjars/bootstrap/4.1.2/dist/js/bootstrap.min.js"></script>
 	    <link rel="stylesheet" href="/webjars/bootstrap/4.1.2/dist/css/bootstrap.min.css">

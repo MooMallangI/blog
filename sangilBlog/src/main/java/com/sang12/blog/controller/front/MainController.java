@@ -61,6 +61,7 @@ public class MainController {
 	public ModelAndView tag(MainPageVo vo, @PathVariable String tagName){
 		logger.debug("vo:::::"+vo);
 		vo.setTagName(tagName);
+		vo.setLength(10000); 	//tag로 검색시 전체가 나오게
 		Map<String, Object> data = commonService.getMainData(vo);
 		//tag로 검색여부를 알려주기위한 변수값
 		data.put("type", "tag");
