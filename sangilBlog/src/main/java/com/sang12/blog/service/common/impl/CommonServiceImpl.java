@@ -1,5 +1,7 @@
 package com.sang12.blog.service.common.impl;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -153,7 +155,21 @@ public class CommonServiceImpl implements CommonService {
 			
 			//네이버웹마스터 도구에서 rss등록이안되서 수정처리
 			//item.setLink("http://sang12.co.kr/" + board.getBoardId() + "/" + board.getTitle().replaceAll(" ","-").replaceAll("/", ""));
-			item.setLink("https://sang12.co.kr/" + board.getBoardId());
+
+			String titleUrlEncode = board.getTitle().replaceAll(" ", "-").replaceAll("/", "");
+			char[] txtChar = titleUrlEncode.toCharArray();
+		    for (int j = 0; j < txtChar.length; j++) {
+		        if (txtChar[j] >= '\uAC00' && txtChar[j] <= '\uD7A3') {
+		            String targetText = String.valueOf(txtChar[j]);
+		            try {
+		            	titleUrlEncode = titleUrlEncode.replace(targetText, URLEncoder.encode(targetText, "UTF-8"));
+		            } catch (UnsupportedEncodingException e) {
+		                e.printStackTrace();
+		            }
+		        } 
+		    }
+			
+			item.setLink("https://sang12.co.kr/" + board.getBoardId() +"/"+ titleUrlEncode);
 			item.setTitle(board.getTitle());
 			
 			/*
