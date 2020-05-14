@@ -55,7 +55,7 @@ public class FrontBoardController {
 		try {
 			data = boardService.getArticle(articleId);
 			String articleTitle = data.get("mainTitle") + "";
-			data.put("mainTitle", articleTitle.replaceAll(" ", "-").replaceAll("/", ""));
+			data.put("mainTitle", articleTitle);
 			data.put("mainEncodeTitle", URLEncoder.encode(articleTitle.replaceAll(" ", "-").replaceAll("/", ""), "UTF-8"));
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
