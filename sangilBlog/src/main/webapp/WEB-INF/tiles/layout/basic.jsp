@@ -34,7 +34,7 @@ html, body{
     	<c:choose>
     		<%--main title이 있을경우 --%>
     		<c:when test="${ mainData.mainTitle ne null }">
-				<title>${mainData.mainTitle}</title>
+				<title>${mainData.mainTitle} - Sangil's Blog</title>
 		    	<meta name="description" content='<c:out value='${fn:substring(mainData.articleList[0].content.replaceAll("\\\<.*?\\\>",""),0,100)}' escapeXml="false"/>'>
 		    	<meta name="keywords" content="${mainData.articleList[0].keyword }">
 		    	<link rel="canonical" href="https://sang12.co.kr/${mainData.articleList[0].boardId}/${mainData.mainEncodeTitle}">	
@@ -46,7 +46,7 @@ html, body{
     		
     		<%--tag 검색시 --%>
     		<c:when test="${ mainData.tagName ne null }">
-    			<title>tag:${mainData.tagName}</title>
+    			<title>tag:${mainData.tagName} - Sangil's Blog</title>
 		    	<meta name="description" content='<c:out value='${fn:substring(mainData.articleList[0].content.replaceAll("\\\<.*?\\\>",""),0,100)}' escapeXml="false"/>'>
 		    	<meta name="keywords" content="${mainData.tagName}">
 		    	<link rel="canonical" href="https://sang12.co.kr/tag/${mainData.tagName}">	
