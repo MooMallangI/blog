@@ -7,15 +7,14 @@
 	/* The sidebar menu */
 	.leftArea {
 	    height: 100%; /* Full-height: remove this if you want "auto" height */
-	    width: 15%; /* Set the width of the sidebar */
-	    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+	    position: absolute; /* Fixed Sidebar (stay in place on scroll) */
 	    z-index: 1; /* Stay on top */
 	    top: 0; /* Stay at the top */
 	    left: 0;
 	    background-color: #ffffff00; 
 	    overflow-x: hidden; /* Disable horizontal scroll */
+	    overflow-y: auto;
 	    padding-top: 20px;
-	    margin-top:200px;
 	}
 	
 	/* The navigation menu links */
@@ -37,7 +36,7 @@
 <c:set var="upCategoryList" value="${mainData.upCategoryList}"/>
 <c:set var="childCategoryList" value="${mainData.childCategoryList}"/>
 
-<nav class="leftArea">
+<nav class="leftArea sticky-top">
 	<ul class="list-unstyled">
 		<c:if test="${fn:length(upCategoryList) > 0} ">
 		<li>
