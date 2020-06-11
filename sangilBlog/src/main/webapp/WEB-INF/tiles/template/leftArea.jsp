@@ -30,7 +30,6 @@
 	.leftArea a:hover {
 	    color: black;
 	}
-	
 </style>
 	
 <c:set var="upCategoryList" value="${mainData.upCategoryList}"/>

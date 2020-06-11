@@ -112,10 +112,12 @@
 	        </a>
 	    </li>
 	</ul>
+	<%-- 
 	<p class="text-left mt-3 ml-5">
 		<b>total</b> <span class="badge badge-pill  badge-dark" id="totalCount"></span><br/>
 		<b>today</b> <span class="badge badge-pill badge-dark" id="todayCount"></span>
 	</p>
+	--%>
 </nav>
 
 <script>

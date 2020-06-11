@@ -22,102 +22,83 @@
 				<h4>tag 검색결과 :: ${fn:replace(mainData.tagName, '-', ' ')}</h4>
 			</div>
 		</div>
+		
+		<div class="mb-5" style="height:auto">	
+			<c:forEach items="${articleList}" var="list">
+				<div class="card">
+					<div class="card-body">
+						<h5 class=""><a href="/${list.boardId}/${fn:replace(fn:replace(list.title, ' ', '-'), '/', '')}" style="color:#000;">${list.title}</a></h5>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
 	</c:when>
-</c:choose>
-
-<%-- 메인 게시물 영역 --%>
-<c:forEach items="${articleList}" var="list">
-	<div class="card mb-3">
-		<div class="card-body mb-1">
-			<h2 class="mt-4 text-center"><a href="/${list.boardId}/${fn:replace(fn:replace(list.title, ' ', '-'), '/', '')}" style="color:#000;">${list.title}</a> <span style="font-size:8px;">${list.largeCategoryName} <c:if test="${list.middleCategoryName ne null }">/ ${list.middleCategoryName}</c:if></span></h2>
-			<p class="text-right mb-2 mt-5"><b><fmt:formatDate pattern = "yyyy-MM-dd" value = "${list.registerDate}"/> posted by sang12</b></p><hr/>
-			<%--main content area--%>
-			<div class="mt-3">
-				${list.content}
-			</div>
-			
-			<!-- 게시글 하단 배너 -->		
-			<ins class="adsbygoogle"
-			     style="display:inline-block;width:100%;height:120px"
-			     data-ad-client="ca-pub-2918447982815807"
-			     data-ad-slot="4912443342">
-			</ins>
-			<script>
-			     (adsbygoogle = window.adsbygoogle || []).push({});
-			</script>
-			
-			<%--relateTitle area --%>
-			<div class="card mt-2">
-				<div class="pl-2 pr-2 pt-3  mb-0">
-					<span class="">
-						<a style="color:black;" href="/category/${fn:replace(list.largeCategoryName, ' ', '-')}"><b>${list.largeCategoryName}</b></a> 
-						<c:if test="${list.middleCategoryName ne null }">
-							<b>></b><a style="color:black;" href="/category/${fn:replace(list.largeCategoryName, ' ', '-')}/${fn:replace(list.middleCategoryName, ' ', '-')}"><b> ${list.middleCategoryName}</b></a>
-						</c:if> 
-						<b> 다른글</b></span> 
-					<hr>
-				</div>
-				<div class="pl-2">
-					<c:forEach items="${list.relateBoardTitleList}" var="relateBoardTitle">
-							<c:choose>
-								<c:when test="${list.boardId eq relateBoardTitle.boardId }">
-									<a class="text-dark" href="/${relateBoardTitle.boardId}/${fn:replace(relateBoardTitle.title, ' ', '-')}"><b>${relateBoardTitle.title }</b></a><br/>		
-								</c:when>
-								<c:otherwise>
-									<a class="text-dark" href="/${relateBoardTitle.boardId}/${fn:replace(relateBoardTitle.title, ' ', '-')}">${relateBoardTitle.title }</a><br/>
-								</c:otherwise>
-							</c:choose>
-					</c:forEach>
-					<br/>
-				</div>
-			</div>
-			<%--keyword area--%>
-			<c:if test="${fn:length(list.keyword) > 0}">
-				<c:set var="keywordArray" value="${fn:split(list.keyword,',')}"/>
-				<div class="text-center mt-3">
-					<c:forEach items="${keywordArray }" var="keyword">
-						<span class="badge badge-dark" style="cursor:hand;" onClick="location.href='/tag/${fn:replace(keyword, ' ', '-')}'">#${keyword }</span>
-					</c:forEach>
-				</div>
-			</c:if>
-			
-			<%-- 댓글창 --%>
-			<div id="replyContent_${list.boardId}">
-				<c:if test="${fn:length(list.boardReplyEntity) > 0}"><hr/></c:if>
-				<c:forEach items="${list.boardReplyEntity}" var="reply">
-					<%--메인 댓글 창--%>
-					<c:if test="${ reply.depth eq 0}">
-						<div class="card mt-2">
-							<div class="card-header p-2">
-								<table>
-									<tr class="align-middle">
-										<td rowspan="2" class="pr-2"><i class="fa fa-user-o fa-2x"></i></td>
-										<td class="ml">${reply.reply_writer}</td>
-									</tr>
-									<tr>
-										<td>
-											<font size="2">${reply.register_datetime}</font> 
-											<c:if test="${reply.del_yn eq 'N' }">
-												<span style="cursor:pointer" onClick="javascript:showDeleteReplyModal(${list.boardId}, ${reply.reply_id});"><i class="fa fa-window-close fa" aria-hidden="true"></i></span>
-											</c:if>
-										</td>
-									</tr>
-								</table>
-						    </div>
-						    <div class="card-body">
-								<p class="card-text">${reply.reply_content }</p>
-								<span class="badge badge-dark" style="cursor:pointer"><a onClick="javascript:showReReplyArea(${list.boardId},${reply.reply_id});">답글</a></span>
-							</div>
+	
+	<c:otherwise>
+		<%-- 메인 게시물 영역 --%>
+		<c:forEach items="${articleList}" var="list">
+			<div class="card mb-3">
+				<div class="card-body mb-1">
+					<h2 class="mt-4 text-center"><a href="/${list.boardId}/${fn:replace(fn:replace(list.title, ' ', '-'), '/', '')}" style="color:#000;">${list.title}</a> <span style="font-size:8px;">${list.largeCategoryName} <c:if test="${list.middleCategoryName ne null }">/ ${list.middleCategoryName}</c:if></span></h2>
+					<p class="text-right mb-2 mt-5"><b><fmt:formatDate pattern = "yyyy-MM-dd" value = "${list.registerDate}"/> posted by sang12</b></p><hr/>
+					<%--main content area--%>
+					<div class="mt-3">
+						${list.content}
+					</div>
+					
+					<!-- 게시글 하단 배너 -->		
+					<ins class="adsbygoogle"
+					     style="display:inline-block;width:100%;height:120px"
+					     data-ad-client="ca-pub-2918447982815807"
+					     data-ad-slot="4912443342">
+					</ins>
+					<script>
+					     (adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+					
+					<%--relateTitle area --%>
+					<div class="card mt-2">
+						<div class="pl-2 pr-2 pt-3  mb-0">
+							<span class="">
+								<a style="color:black;" href="/category/${fn:replace(list.largeCategoryName, ' ', '-')}"><b>${list.largeCategoryName}</b></a> 
+								<c:if test="${list.middleCategoryName ne null }">
+									<b>></b><a style="color:black;" href="/category/${fn:replace(list.largeCategoryName, ' ', '-')}/${fn:replace(list.middleCategoryName, ' ', '-')}"><b> ${list.middleCategoryName}</b></a>
+								</c:if> 
+								<b> 다른글</b></span> 
+							<hr>
+						</div>
+						<div class="pl-2">
+							<c:forEach items="${list.relateBoardTitleList}" var="relateBoardTitle">
+									<c:choose>
+										<c:when test="${list.boardId eq relateBoardTitle.boardId }">
+											<a class="text-dark" href="/${relateBoardTitle.boardId}/${fn:replace(relateBoardTitle.title, ' ', '-')}"><b>${relateBoardTitle.title }</b></a><br/>		
+										</c:when>
+										<c:otherwise>
+											<a class="text-dark" href="/${relateBoardTitle.boardId}/${fn:replace(relateBoardTitle.title, ' ', '-')}">${relateBoardTitle.title }</a><br/>
+										</c:otherwise>
+									</c:choose>
+							</c:forEach>
+							<br/>
+						</div>
+					</div>
+					<%--keyword area--%>
+					<c:if test="${fn:length(list.keyword) > 0}">
+						<c:set var="keywordArray" value="${fn:split(list.keyword,',')}"/>
+						<div class="text-center mt-3">
+							<c:forEach items="${keywordArray }" var="keyword">
+								<span class="badge badge-dark" style="cursor:hand;" onClick="location.href='/tag/${fn:replace(keyword, ' ', '-')}'">#${keyword }</span>
+							</c:forEach>
 						</div>
 					</c:if>
 					
-					<%--자식 댓글 창 (대댓글)--%>
-					<c:if test="${ reply.depth ne 0}">
-						<div class="d-flex">
-							<div class="p-2"><i class='mt-3 fa fa-reply fa fa-rotate-180' aria-hidden='true'></i></div>
-							<div class="flex-fill">
+					<%-- 댓글창 --%>
+					<div id="replyContent_${list.boardId}">
+						<c:if test="${fn:length(list.boardReplyEntity) > 0}"><hr/></c:if>
+						<c:forEach items="${list.boardReplyEntity}" var="reply">
+							<%--메인 댓글 창--%>
+							<c:if test="${ reply.depth eq 0}">
 								<div class="card mt-2">
-									<div class="card-header">
+									<div class="card-header p-2">
 										<table>
 											<tr class="align-middle">
 												<td rowspan="2" class="pr-2"><i class="fa fa-user-o fa-2x"></i></td>
@@ -132,51 +113,83 @@
 												</td>
 											</tr>
 										</table>
-									</div>
-									<div class="card-body">
+								    </div>
+								    <div class="card-body">
 										<p class="card-text">${reply.reply_content }</p>
-										<c:if test="${reply.del_yn eq 'N' }">
-											<span class="badge badge-dark" style="cursor:pointer"><a onClick="javascript:showReReplyArea(${list.boardId},${reply.reply_id}, ${reply.parent_id});">답글</a></span>
-										</c:if>
+										<span class="badge badge-dark" style="cursor:pointer"><a onClick="javascript:showReReplyArea(${list.boardId},${reply.reply_id});">답글</a></span>
 									</div>
 								</div>
-							</div>
-						</div>					
-					</c:if>
-					
-					<%--대댓글 작성 공간 --%>
-					<div id="reReply_${reply.reply_id}"></div>
-			    	
-				</c:forEach>
+							</c:if>
+							
+							<%--자식 댓글 창 (대댓글)--%>
+							<c:if test="${ reply.depth ne 0}">
+								<div class="d-flex">
+									<div class="p-2"><i class='mt-3 fa fa-reply fa fa-rotate-180' aria-hidden='true'></i></div>
+									<div class="flex-fill">
+										<div class="card mt-2">
+											<div class="card-header">
+												<table>
+													<tr class="align-middle">
+														<td rowspan="2" class="pr-2"><i class="fa fa-user-o fa-2x"></i></td>
+														<td class="ml">${reply.reply_writer}</td>
+													</tr>
+													<tr>
+														<td>
+															<font size="2">${reply.register_datetime}</font> 
+															<c:if test="${reply.del_yn eq 'N' }">
+																<span style="cursor:pointer" onClick="javascript:showDeleteReplyModal(${list.boardId}, ${reply.reply_id});"><i class="fa fa-window-close fa" aria-hidden="true"></i></span>
+															</c:if>
+														</td>
+													</tr>
+												</table>
+											</div>
+											<div class="card-body">
+												<p class="card-text">${reply.reply_content }</p>
+												<c:if test="${reply.del_yn eq 'N' }">
+													<span class="badge badge-dark" style="cursor:pointer"><a onClick="javascript:showReReplyArea(${list.boardId},${reply.reply_id}, ${reply.parent_id});">답글</a></span>
+												</c:if>
+											</div>
+										</div>
+									</div>
+								</div>					
+							</c:if>
+							
+							<%--대댓글 작성 공간 --%>
+							<div id="reReply_${reply.reply_id}"></div>
+					    	
+						</c:forEach>
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
-	
-	<%-- 댓글 작성 --%>
-	<div class="card mb-2">
-		<div class="card-header bg-light">
-    		<i class="fa fa-comment fa"></i> REPLY
-  		</div>
-		<div class="card-body">
- 			<ul class="list-group list-group-flush">
-			    <li class="list-group-item">
-			    <form id = "boardReplyFrm_${list.boardId}">
-			    	<table>
-			    		<tr>
-			    			<td class="align-middle"><label for="replyId"><i class="fa fa-user-circle-o fa"></i></label></td>
-			    			<td><input type="text" class="form-control ml-2" placeholder="Enter yourId" id="reply_writer_${list.boardId}" name="reply_writer">
-			    			<td class="align-middle"><label for="replyPassword" class="ml-4"><i class="fa fa-unlock-alt fa"></i></label></td>
-			    			<td><input type="password" class="form-control ml-2" placeholder="Enter password" id="reply_password_${list.boardId}" name="reply_password"></td>
-			    		</tr>
-			    	</table>
-					<textarea class="form-control mt-2" id="reply_content_${list.boardId}" name="reply_content" rows="3"></textarea>
-				</form>
-   				<button type="button" class="btn btn-dark" onClick="javascript:addReply(${list.boardId}, 0);">post reply</button>
-			    </li>
-			</ul>
-		</div>
-	</div>
-</c:forEach>
+			
+			<%-- 댓글 작성 --%>
+			<div class="card mb-2">
+				<div class="card-header bg-light">
+		    		<i class="fa fa-comment fa"></i> REPLY
+		  		</div>
+				<div class="card-body">
+		 			<ul class="list-group list-group-flush">
+					    <li class="list-group-item">
+					    <form id = "boardReplyFrm_${list.boardId}">
+					    	<table>
+					    		<tr>
+					    			<td class="align-middle"><label for="replyId"><i class="fa fa-user-circle-o fa"></i></label></td>
+					    			<td><input type="text" class="form-control ml-2" placeholder="Enter yourId" id="reply_writer_${list.boardId}" name="reply_writer">
+					    			<td class="align-middle"><label for="replyPassword" class="ml-4"><i class="fa fa-unlock-alt fa"></i></label></td>
+					    			<td><input type="password" class="form-control ml-2" placeholder="Enter password" id="reply_password_${list.boardId}" name="reply_password"></td>
+					    		</tr>
+					    	</table>
+							<textarea class="form-control mt-2" id="reply_content_${list.boardId}" name="reply_content" rows="3"></textarea>
+						</form>
+		   				<button type="button" class="btn btn-dark" onClick="javascript:addReply(${list.boardId}, 0);">post reply</button>
+					    </li>
+					</ul>
+				</div>
+			</div>
+		</c:forEach>
+		
+	</c:otherwise>
+</c:choose>
 
 </div>
 
