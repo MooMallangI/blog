@@ -19,11 +19,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.sang12.blog.domain.board.BoardEntity;
 import com.sang12.blog.domain.board.BoardReplyEntity;
+import com.sang12.blog.exception.PageNotFoundException;
 import com.sang12.blog.repository.common.BoardDao;
 import com.sang12.blog.repository.common.BoardRepository;
 import com.sang12.blog.repository.common.CategoryDao;
@@ -112,6 +114,7 @@ public class BoardServiceImpl implements BoardService {
 	public Map<String, Object> getArticle(int boardId) {
 		Map<String, Object> returnData = new HashMap<String, Object>();
 		List<BoardEntity> boardList = boardDao.getMainArticleByBoardId(boardId);
+		if(boardList.size()==0) throw new PageNotFoundException();
 		BoardEntity board = boardList.get(0);
 		returnData.put("articleList", boardList);
 		//다른 게시물 리스트 가져오기
