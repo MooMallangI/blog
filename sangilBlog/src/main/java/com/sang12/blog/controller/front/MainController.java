@@ -104,6 +104,7 @@ public class MainController {
 	@RequestMapping(value = "/.well-known/acme-challenge/nM4_CvtYYDrGcclMcjzF07aQXASk3yz2bZJEOhPQ66o")
 	@ResponseBody
 	public String applyHttps(HttpServletResponse response) {
+		
 		return "nM4_CvtYYDrGcclMcjzF07aQXASk3yz2bZJEOhPQ66o.OzhoVkYUtTfBlqw89G_5QALG1PnRmmHHz-_k9lMZ0nw";
 	}
 	
