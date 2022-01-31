@@ -101,11 +101,10 @@ public class MainController {
 	    return content;
 	}
 	
-	@RequestMapping(value = "/.well-known/acme-challenge/nM4_CvtYYDrGcclMcjzF07aQXASk3yz2bZJEOhPQ66o")
+	@RequestMapping(value = "/.well-known/acme-challenge/_nJbn6YFS2HsLCor9ew_ASQVHcgFT9-wNp-H7AA4nJ0")
 	@ResponseBody
 	public String applyHttps(HttpServletResponse response) {
-		
-		return "nM4_CvtYYDrGcclMcjzF07aQXASk3yz2bZJEOhPQ66o.OzhoVkYUtTfBlqw89G_5QALG1PnRmmHHz-_k9lMZ0nw";
+		return "_nJbn6YFS2HsLCor9ew_ASQVHcgFT9-wNp-H7AA4nJ0.OzhoVkYUtTfBlqw89G_5QALG1PnRmmHHz-_k9lMZ0nw";
 	}
 	
 	
