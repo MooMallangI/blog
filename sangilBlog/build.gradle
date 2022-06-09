@@ -41,7 +41,12 @@ dependencies {
 	compile('mysql:mysql-connector-java')
 	
 	//lombok
-	compile('org.projectlombok:lombok:1.16.6')
+	compileOnly 'org.projectlombok:lombok:1.18.24'
+	annotationProcessor 'org.projectlombok:lombok:1.18.24'
+	testCompileOnly 'org.projectlombok:lombok:1.18.24'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
+	
+	compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.0'
 	
 	//mybatis	
 	compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1")
