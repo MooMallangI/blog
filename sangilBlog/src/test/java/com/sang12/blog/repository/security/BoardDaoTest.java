@@ -13,8 +13,6 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @Date 2018. 7. 29.
  * @Description : boardDao Test
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest
 public class BoardDaoTest {
 /*	@Autowired
 	private BoardDao boardDao;*/

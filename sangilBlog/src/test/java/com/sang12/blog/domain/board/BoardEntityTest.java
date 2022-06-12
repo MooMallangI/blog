@@ -9,10 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.sang12.blog.repository.common.BoardRepository;
 
-@RunWith(SpringRunner.class)
-@AutoConfigureTestDatabase
 public class BoardEntityTest {
-	@Autowired
 	private BoardRepository boardRep;
 	
 	//@Test
