@@ -2,7 +2,6 @@ package com.sang12.blog.domain.board;
 
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -12,12 +11,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
+import com.sang12.blog.domain.common.BaseEntity;
+
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 
 /**
@@ -26,8 +26,9 @@ import lombok.Data;
  */
 @Entity
 @Data
+@EqualsAndHashCode(callSuper=false)
 @Table(name="BOARD01TM")
-public class BoardEntity implements Serializable{
+public class BoardEntity extends BaseEntity implements Serializable{
 	private static final long serialVersionUID = -7410113111280947387L;
 	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
@@ -49,13 +50,6 @@ public class BoardEntity implements Serializable{
 	@Lob
 	@Column( length = 100000 )
 	String content;
-	
-	@Temporal(TemporalType.DATE)
-	Date registerDate;
-	String registerId;
-	@Temporal(TemporalType.DATE)
-	Date finalChangeDate;
-	String finalChangeId;
 	
 	@Transient
 	String largeCategoryName;
