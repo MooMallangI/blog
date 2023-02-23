@@ -19,7 +19,7 @@ html, body{
     	<meta name="viewport" content="width=device-width, initial-scale=1">
     	
     	<!-- 네이버 웹마스터 도구 -->
-    	<meta name="naver-site-verification" content="a6da77ae6bd501416cee3778d854b01cd134bd62"/>
+		<meta name="naver-site-verification" content="0ca0e91e6b2316f6a6dd62e8e74d6ff3889fd2fa"/>
     	
     	<!-- google ads -->
     	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
